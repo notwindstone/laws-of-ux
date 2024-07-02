@@ -18,6 +18,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import space.windstone.lawsofux.constants.NavigationLink
 
@@ -37,7 +38,7 @@ fun BottomBar() {
             unselectedIcon = Icons.Outlined.ViewInAr,
         ),
         NavigationLink(
-            label = "Cognitive Bidas",
+            label = "Cognitive Bias",
             selectedIcon = Icons.Filled.Extension,
             unselectedIcon = Icons.Outlined.Extension,
         ),
@@ -61,7 +62,7 @@ fun BottomBar() {
                         contentDescription = item.label
                     )
                 },
-                label = { Text(item.label) },
+                label = { Text(item.label, textAlign = TextAlign.Center) },
                 selected = selectedItem == index,
                 onClick = { selectedItem = index }
             )
