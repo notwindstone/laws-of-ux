@@ -50,7 +50,7 @@ android {
 }
 
 dependencies {
-
+    implementation(libs.font.awesome)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

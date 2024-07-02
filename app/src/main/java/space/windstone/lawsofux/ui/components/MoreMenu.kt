@@ -10,7 +10,6 @@ import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -21,7 +20,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 
 @Preview
@@ -44,12 +42,10 @@ fun MoreMenu() {
                 onClick = { /* Handle settings! */ },
                 leadingIcon = { Icon(Icons.Outlined.Settings, contentDescription = null) }
             )
-            HorizontalDivider()
             DropdownMenuItem(
-                text = { Text("Send Feedback") },
+                text = { Text("Github") },
                 onClick = { /* Handle send feedback! */ },
                 leadingIcon = { Icon(Icons.Outlined.Email, contentDescription = null) },
-                trailingIcon = { Text("F11", textAlign = TextAlign.Center) }
             )
         }
     }
