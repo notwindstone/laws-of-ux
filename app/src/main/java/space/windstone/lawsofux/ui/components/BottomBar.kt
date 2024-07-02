@@ -37,17 +37,35 @@ import androidx.compose.ui.tooling.preview.Preview
 @Composable
 fun BottomBar() {
     var selectedItem by remember { mutableIntStateOf(0) }
-    val items = listOf("Heuristic", "Gestalt", "Cognitive Bias", "Principle")
-    val selectedIcons = listOf(Icons.Filled.Psychology, Icons.Filled.ViewInAr, Icons.Filled.Extension, Icons.Filled.Circle)
-    val unselectedIcons =
-        listOf(Icons.Outlined.Psychology, Icons.Outlined.ViewInAr, Icons.Outlined.Extension, Icons.Outlined.Tonality)
+    val items = listOf(
+        "Heuristic",
+        "Gestalt",
+        "Cognitive Bias",
+        "Principle"
+    )
+    val selectedIcons = listOf(
+        Icons.Filled.Psychology,
+        Icons.Filled.ViewInAr,
+        Icons.Filled.Extension,
+        Icons.Filled.Circle
+    )
+    val unselectedIcons = listOf(
+        Icons.Outlined.Psychology,
+        Icons.Outlined.ViewInAr,
+        Icons.Outlined.Extension,
+        Icons.Outlined.Tonality
+    )
 
     NavigationBar {
         items.forEachIndexed { index, item ->
             NavigationBarItem(
                 icon = {
                     Icon(
-                        if (selectedItem == index) selectedIcons[index] else unselectedIcons[index],
+                        if (selectedItem == index) {
+                            selectedIcons[index]
+                        } else {
+                            unselectedIcons[index]
+                        },
                         contentDescription = item
                     )
                 },
