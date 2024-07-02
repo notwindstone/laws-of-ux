@@ -21,6 +21,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import compose.icons.FontAwesomeIcons
+import compose.icons.fontawesomeicons.Brands
+import compose.icons.fontawesomeicons.brands.Github
 
 @Preview
 @Composable
@@ -45,7 +48,7 @@ fun MoreMenu() {
             DropdownMenuItem(
                 text = { Text("Github") },
                 onClick = { /* Handle send feedback! */ },
-                leadingIcon = { Icon(Icons.Outlined.Email, contentDescription = null) },
+                leadingIcon = { Icon(FontAwesomeIcons.Brands.Github, contentDescription = null) },
             )
         }
     }
