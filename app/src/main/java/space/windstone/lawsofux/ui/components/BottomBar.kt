@@ -19,48 +19,52 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
+import space.windstone.lawsofux.constants.NavigationLink
 
 @Preview
 @Composable
 fun BottomBar() {
     var selectedItem by remember { mutableIntStateOf(0) }
-    val items = listOf(
-        "Heuristic",
-        "Gestalt",
-        "Cognitive Bias",
-        "Principle"
-    )
-    val selectedIcons = listOf(
-        Icons.Filled.Psychology,
-        Icons.Filled.ViewInAr,
-        Icons.Filled.Extension,
-        Icons.Filled.Circle
-    )
-    val unselectedIcons = listOf(
-        Icons.Outlined.Psychology,
-        Icons.Outlined.ViewInAr,
-        Icons.Outlined.Extension,
-        Icons.Outlined.Tonality
+    val navigationLinks = listOf(
+        NavigationLink(
+            label = "Heuristic",
+            selectedIcon = Icons.Filled.Psychology,
+            unselectedIcon = Icons.Outlined.Psychology,
+        ),
+        NavigationLink(
+            label = "Gestalt",
+            selectedIcon = Icons.Filled.ViewInAr,
+            unselectedIcon = Icons.Outlined.ViewInAr,
+        ),
+        NavigationLink(
+            label = "Cognitive Bidas",
+            selectedIcon = Icons.Filled.Extension,
+            unselectedIcon = Icons.Outlined.Extension,
+        ),
+        NavigationLink(
+            label = "Principle",
+            selectedIcon = Icons.Filled.Circle,
+            unselectedIcon = Icons.Outlined.Tonality,
+        ),
     )
 
     NavigationBar {
-        items.forEachIndexed { index, item ->
+        navigationLinks.forEachIndexed { index, item ->
             NavigationBarItem(
                 icon = {
                     Icon(
-                        if (selectedItem == index) {
-                            selectedIcons[index]
+                        imageVector = if (selectedItem == index) {
+                            item.selectedIcon
                         } else {
-                            unselectedIcons[index]
+                            item.unselectedIcon
                         },
-                        contentDescription = item
+                        contentDescription = item.label
                     )
                 },
-                label = { Text(item) },
+                label = { Text(item.label) },
                 selected = selectedItem == index,
                 onClick = { selectedItem = index }
             )
         }
     }
-
 }
