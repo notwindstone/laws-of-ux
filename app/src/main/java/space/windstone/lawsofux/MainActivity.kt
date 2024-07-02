@@ -17,6 +17,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import space.windstone.lawsofux.ui.components.PinnedTopAppBar
 import space.windstone.lawsofux.ui.theme.LawsOfUXTheme
 
 class MainActivity : ComponentActivity() {
@@ -28,16 +29,7 @@ class MainActivity : ComponentActivity() {
             LawsOfUXTheme {
                 Scaffold(
                     topBar = {
-                        TopAppBar(
-                            colors = TopAppBarDefaults.topAppBarColors(
-                                containerColor = MaterialTheme.colorScheme.primaryContainer,
-                                titleContentColor = MaterialTheme.colorScheme.primary,
-                            ),
-                            title = {
-                                Text("Laws of UX")
-                            }
-                        )
-
+                        PinnedTopAppBar()
                     },
                     bottomBar = {
                         NavigationBar(
