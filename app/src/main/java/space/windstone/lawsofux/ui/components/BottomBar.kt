@@ -1,25 +1,12 @@
 package space.windstone.lawsofux.ui.components
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.BorderStyle
-import androidx.compose.material.icons.filled.CheckBoxOutlineBlank
 import androidx.compose.material.icons.filled.Circle
 import androidx.compose.material.icons.filled.Extension
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Psychology
-import androidx.compose.material.icons.filled.Square
-import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.icons.filled.Tonality
 import androidx.compose.material.icons.filled.ViewInAr
-import androidx.compose.material.icons.outlined.BorderStyle
-import androidx.compose.material.icons.outlined.CheckBoxOutlineBlank
-import androidx.compose.material.icons.outlined.Circle
 import androidx.compose.material.icons.outlined.Extension
-import androidx.compose.material.icons.outlined.FavoriteBorder
-import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Psychology
-import androidx.compose.material.icons.outlined.StarBorder
 import androidx.compose.material.icons.outlined.Tonality
 import androidx.compose.material.icons.outlined.ViewInAr
 import androidx.compose.material3.Icon
