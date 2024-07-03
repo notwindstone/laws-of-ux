@@ -2,6 +2,7 @@ package space.windstone.lawsofux.ui.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
@@ -21,6 +22,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import compose.icons.FontAwesomeIcons
 import compose.icons.fontawesomeicons.Brands
 import compose.icons.fontawesomeicons.brands.Github
@@ -38,17 +40,35 @@ fun MoreMenu() {
             DropdownMenuItem(
                 text = { Text("Edit") },
                 onClick = { /* Handle edit! */ },
-                leadingIcon = { Icon(Icons.Outlined.Edit, contentDescription = null) }
+                leadingIcon = {
+                    Icon(
+                        Icons.Outlined.Edit,
+                        contentDescription = null,
+                        modifier = Modifier.size(24.dp)
+                    )
+                }
             )
             DropdownMenuItem(
                 text = { Text("Settings") },
                 onClick = { /* Handle settings! */ },
-                leadingIcon = { Icon(Icons.Outlined.Settings, contentDescription = null) }
+                leadingIcon = {
+                    Icon(
+                        Icons.Outlined.Settings,
+                        contentDescription = null,
+                        modifier = Modifier.size(24.dp)
+                    )
+                }
             )
             DropdownMenuItem(
                 text = { Text("Github") },
                 onClick = { /* Handle send feedback! */ },
-                leadingIcon = { Icon(FontAwesomeIcons.Brands.Github, contentDescription = null) },
+                leadingIcon = {
+                    Icon(
+                        FontAwesomeIcons.Brands.Github,
+                        contentDescription = null,
+                        modifier = Modifier.size(24.dp)
+                    )
+                },
             )
         }
     }
