@@ -1,5 +1,7 @@
 package space.windstone.lawsofux.ui.components
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
@@ -20,6 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import compose.icons.FontAwesomeIcons
@@ -29,6 +32,9 @@ import compose.icons.fontawesomeicons.brands.Github
 @Preview
 @Composable
 fun MoreMenu() {
+    val context = LocalContext.current
+    val intentLawsOfUX = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://lawsofux.com/")) }
+    val intentGithubRepo = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/notwindstone/laws-of-ux")) }
     var expanded by remember { mutableStateOf(false) }
 
     Box(modifier = Modifier.fillMaxSize().wrapContentSize(Alignment.TopStart)) {
@@ -49,7 +55,9 @@ fun MoreMenu() {
             )
             DropdownMenuItem(
                 text = { Text("Github") },
-                onClick = { /* Handle send feedback! */ },
+                onClick = {
+                    context.startActivity(intentGithubRepo)
+                },
                 leadingIcon = {
                     Icon(
                         FontAwesomeIcons.Brands.Github,
@@ -60,7 +68,9 @@ fun MoreMenu() {
             )
             DropdownMenuItem(
                 text = { Text("Laws of UX") },
-                onClick = { /* Handle edit! */ },
+                onClick = {
+                    context.startActivity(intentLawsOfUX)
+                },
                 leadingIcon = {
                     Icon(
                         Icons.Outlined.Link,
