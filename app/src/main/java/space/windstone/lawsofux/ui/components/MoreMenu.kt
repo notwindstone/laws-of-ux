@@ -6,9 +6,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material.icons.outlined.Edit
-import androidx.compose.material.icons.outlined.Email
-import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material.icons.outlined.Link
+import androidx.compose.material.icons.outlined.Palette
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -38,22 +37,11 @@ fun MoreMenu() {
         }
         DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
             DropdownMenuItem(
-                text = { Text("Edit") },
-                onClick = { /* Handle edit! */ },
-                leadingIcon = {
-                    Icon(
-                        Icons.Outlined.Edit,
-                        contentDescription = null,
-                        modifier = Modifier.size(24.dp)
-                    )
-                }
-            )
-            DropdownMenuItem(
-                text = { Text("Settings") },
+                text = { Text("Theme") },
                 onClick = { /* Handle settings! */ },
                 leadingIcon = {
                     Icon(
-                        Icons.Outlined.Settings,
+                        Icons.Outlined.Palette,
                         contentDescription = null,
                         modifier = Modifier.size(24.dp)
                     )
@@ -69,6 +57,17 @@ fun MoreMenu() {
                         modifier = Modifier.size(24.dp)
                     )
                 },
+            )
+            DropdownMenuItem(
+                text = { Text("Laws of UX") },
+                onClick = { /* Handle edit! */ },
+                leadingIcon = {
+                    Icon(
+                        Icons.Outlined.Link,
+                        contentDescription = null,
+                        modifier = Modifier.size(24.dp)
+                    )
+                }
             )
         }
     }
