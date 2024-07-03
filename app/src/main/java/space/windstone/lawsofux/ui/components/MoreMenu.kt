@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.outlined.Link
 import androidx.compose.material.icons.outlined.Palette
@@ -32,19 +33,33 @@ import compose.icons.fontawesomeicons.brands.Github
 @Preview
 @Composable
 fun MoreMenu() {
+    val openDialog = remember { mutableStateOf(false) }
     val context = LocalContext.current
     val intentLawsOfUX = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://lawsofux.com/")) }
     val intentGithubRepo = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/notwindstone/laws-of-ux")) }
     var expanded by remember { mutableStateOf(false) }
 
     Box(modifier = Modifier.fillMaxSize().wrapContentSize(Alignment.TopStart)) {
+        when {
+            openDialog.value -> {
+                ThemeEditDialog(
+                    onDismissRequest = { openDialog.value = false },
+                    onConfirmation = {
+                        openDialog.value = false
+                        println("Confirmation registered") // Add logic here to handle confirmation.
+                    },
+                )
+            }
+        }
         IconButton(onClick = { expanded = true }) {
             Icon(Icons.Default.MoreVert, contentDescription = "Localized description")
         }
         DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
             DropdownMenuItem(
                 text = { Text("Theme") },
-                onClick = { /* Handle settings! */ },
+                onClick = {
+                    openDialog.value = true
+                },
                 leadingIcon = {
                     Icon(
                         Icons.Outlined.Palette,
