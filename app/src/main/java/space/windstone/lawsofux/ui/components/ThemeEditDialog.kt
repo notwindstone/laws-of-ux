@@ -1,5 +1,6 @@
 package space.windstone.lawsofux.ui.components
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -8,21 +9,35 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import space.windstone.lawsofux.LocalThemeGetterProvider
+import space.windstone.lawsofux.LocalThemeSetterProvider
 
 @Composable
 fun ThemeEditDialog(
     onDismissRequest: () -> Unit,
     onConfirmation: () -> Unit,
 ) {
-    var selectedColorScheme by remember { mutableIntStateOf(0) }
+    val systemTheme = isSystemInDarkTheme()
+    val setDarkTheme = LocalThemeSetterProvider.current
+    val currentTheme = LocalThemeGetterProvider.current
+    val currentThemeIndex = when (currentTheme) {
+        false -> 0
+        true -> 1
+    }
+
+    var selectedColorScheme by remember { mutableIntStateOf(currentThemeIndex) }
     val options = listOf(
-        "System",
         "Light",
         "Dark"
     )
 
     fun changeColorScheme(index: Int) {
         selectedColorScheme = index
+
+        when (index) {
+            0 -> setDarkTheme(false)
+            1 -> setDarkTheme(true)
+        }
     }
 
     AlertDialog(
@@ -50,7 +65,11 @@ fun ThemeEditDialog(
         },
         dismissButton = {
             TextButton(onClick = {
-                onDismissRequest()
+                setDarkTheme(systemTheme)
+                changeColorScheme(when (systemTheme) {
+                    false -> 0
+                    true -> 1
+                })
             }) {
                 Text("Restore")
             }
