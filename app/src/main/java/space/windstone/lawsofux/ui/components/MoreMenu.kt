@@ -43,22 +43,28 @@ fun MoreMenu() {
         when {
             openDialog.value -> {
                 ThemeEditDialog(
-                    onDismissRequest = { openDialog.value = false },
+                    onDismissRequest = {
+                        openDialog.value = false
+                    },
                     onConfirmation = {
                         openDialog.value = false
-                        println("Confirmation registered") // Add logic here to handle confirmation.
                     },
                 )
             }
         }
-        IconButton(onClick = { expanded = true }) {
+        IconButton(
+            onClick = { expanded = true }
+        ) {
             Icon(Icons.Default.MoreVert, contentDescription = "Localized description")
         }
         DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
             DropdownMenuItem(
-                text = { Text("Theme") },
+                text = {
+                    Text("Theme")
+                },
                 onClick = {
                     openDialog.value = true
+                    expanded = false
                 },
                 leadingIcon = {
                     Icon(
@@ -69,7 +75,9 @@ fun MoreMenu() {
                 }
             )
             DropdownMenuItem(
-                text = { Text("Github") },
+                text = {
+                    Text("Github")
+                },
                 onClick = {
                     context.startActivity(intentGithubRepo)
                 },
@@ -82,7 +90,9 @@ fun MoreMenu() {
                 },
             )
             DropdownMenuItem(
-                text = { Text("Laws of UX") },
+                text = {
+                    Text("Laws of UX")
+                },
                 onClick = {
                     context.startActivity(intentLawsOfUX)
                 },

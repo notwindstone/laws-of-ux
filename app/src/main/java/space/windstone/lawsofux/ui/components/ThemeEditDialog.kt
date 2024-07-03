@@ -10,18 +10,21 @@ fun ThemeEditDialog(
     onDismissRequest: () -> Unit,
     onConfirmation: () -> Unit,
 ) {
-
     AlertDialog(
         onDismissRequest = {
             onDismissRequest()
         },
-        title = { Text(text = "Title") },
-        text = { Text(text = "Turned on by default") },
+        title = {
+            Text(text = "title")
+                },
+        text = {
+            Text(text = "description")
+               },
         confirmButton = {
             TextButton(onClick = {
                 onConfirmation()
             }) {
-                Text("Confirm")
+                Text("Apply")
             }
         },
         dismissButton = {
