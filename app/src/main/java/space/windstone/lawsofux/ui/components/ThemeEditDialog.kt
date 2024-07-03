@@ -15,11 +15,11 @@ fun ThemeEditDialog(
             onDismissRequest()
         },
         title = {
-            Text(text = "title")
-                },
+            Text(text = "Theme")
+        },
         text = {
-            Text(text = "description")
-               },
+            SegmentedControl()
+        },
         confirmButton = {
             TextButton(onClick = {
                 onConfirmation()
