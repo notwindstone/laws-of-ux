@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.outlined.Link
 import androidx.compose.material.icons.outlined.Palette
@@ -29,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import compose.icons.FontAwesomeIcons
 import compose.icons.fontawesomeicons.Brands
 import compose.icons.fontawesomeicons.brands.Github
+import space.windstone.lawsofux.constants.MoreMenuButton
 
 @Preview
 @Composable
@@ -38,6 +38,31 @@ fun MoreMenu() {
     val intentLawsOfUX = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://lawsofux.com/")) }
     val intentGithubRepo = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/notwindstone/laws-of-ux")) }
     var expanded by remember { mutableStateOf(false) }
+
+    val buttons = listOf(
+        MoreMenuButton(
+            label = "Theme",
+            action = {
+                openDialog.value = true
+                expanded = false
+            },
+            icon = Icons.Outlined.Palette,
+        ),
+        MoreMenuButton(
+            label = "Github",
+            action = {
+                context.startActivity(intentGithubRepo)
+            },
+            icon = FontAwesomeIcons.Brands.Github,
+        ),
+        MoreMenuButton(
+            label = "Laws of UX",
+            action = {
+                context.startActivity(intentLawsOfUX)
+            },
+            icon = Icons.Outlined.Link,
+        ),
+    )
 
     Box(modifier = Modifier.fillMaxSize().wrapContentSize(Alignment.TopStart)) {
         when {
@@ -58,52 +83,21 @@ fun MoreMenu() {
             Icon(Icons.Default.MoreVert, contentDescription = "Localized description")
         }
         DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
-            DropdownMenuItem(
-                text = {
-                    Text("Theme")
-                },
-                onClick = {
-                    openDialog.value = true
-                    expanded = false
-                },
-                leadingIcon = {
-                    Icon(
-                        Icons.Outlined.Palette,
-                        contentDescription = null,
-                        modifier = Modifier.size(24.dp)
-                    )
-                }
-            )
-            DropdownMenuItem(
-                text = {
-                    Text("Github")
-                },
-                onClick = {
-                    context.startActivity(intentGithubRepo)
-                },
-                leadingIcon = {
-                    Icon(
-                        FontAwesomeIcons.Brands.Github,
-                        contentDescription = null,
-                        modifier = Modifier.size(24.dp)
-                    )
-                },
-            )
-            DropdownMenuItem(
-                text = {
-                    Text("Laws of UX")
-                },
-                onClick = {
-                    context.startActivity(intentLawsOfUX)
-                },
-                leadingIcon = {
-                    Icon(
-                        Icons.Outlined.Link,
-                        contentDescription = null,
-                        modifier = Modifier.size(24.dp)
-                    )
-                }
-            )
+            buttons.forEach { item ->
+                DropdownMenuItem(
+                    text = {
+                        Text(item.label)
+                    },
+                    onClick = item.action,
+                    leadingIcon = {
+                        Icon(
+                            item.icon,
+                            contentDescription = null,
+                            modifier = Modifier.size(24.dp)
+                        )
+                    }
+                )
+            }
         }
     }
 }
