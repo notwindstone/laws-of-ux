@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Laws of UX"
+rootProject.name = "Laws Of UX"
 include(":app")
