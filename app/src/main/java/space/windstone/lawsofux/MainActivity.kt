@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import space.windstone.lawsofux.ui.composables.RootLayout
+import space.windstone.lawsofux.ui.composables.RootNavigation
 import space.windstone.lawsofux.ui.theme.LawsOfUXTheme
 
 class MainActivity : ComponentActivity() {
@@ -13,7 +13,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             LawsOfUXTheme {
-                RootLayout()
+                RootNavigation()
             }
         }
     }

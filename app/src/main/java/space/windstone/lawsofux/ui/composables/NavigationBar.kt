@@ -19,7 +19,7 @@ import androidx.compose.runtime.setValue
 
 @Composable
 fun NavigationBar(
-    onSelected: (String?) -> Unit,
+    navigateTo: (String?) -> Unit,
 ) {
     var selectedItem by remember { mutableIntStateOf(0) }
     val items = listOf("Home", "FriendsList", "FriendsList")
@@ -44,7 +44,7 @@ fun NavigationBar(
                 selected = selectedItem == index,
                 onClick = {
                     selectedItem = index
-                    onSelected(items[index])
+                    navigateTo(items[index])
                 },
             )
         }
