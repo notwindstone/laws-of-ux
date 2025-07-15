@@ -18,9 +18,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 
 @Composable
-fun NavigationBarSample(navigate: () -> Unit) {
+fun NavigationBar(
+    onSelected: (String?) -> Unit,
+) {
     var selectedItem by remember { mutableIntStateOf(0) }
-    val items = listOf("Songs", "Artists", "Playlists")
+    val items = listOf("Home", "FriendsList", "FriendsList")
     val selectedIcons = listOf(Icons.Filled.Home, Icons.Filled.Favorite, Icons.Filled.Star)
     val unselectedIcons =
         listOf(Icons.Outlined.Home, Icons.Outlined.FavoriteBorder, Icons.Outlined.Star)
@@ -30,7 +32,11 @@ fun NavigationBarSample(navigate: () -> Unit) {
             NavigationBarItem(
                 icon = {
                     Icon(
-                        if (selectedItem == index) selectedIcons[index] else unselectedIcons[index],
+                        if (selectedItem == index) {
+                            selectedIcons[index]
+                        } else {
+                            unselectedIcons[index]
+                        },
                         contentDescription = item,
                     )
                 },
@@ -38,7 +44,7 @@ fun NavigationBarSample(navigate: () -> Unit) {
                 selected = selectedItem == index,
                 onClick = {
                     selectedItem = index
-                    navigate()
+                    onSelected(items[index])
                 },
             )
         }

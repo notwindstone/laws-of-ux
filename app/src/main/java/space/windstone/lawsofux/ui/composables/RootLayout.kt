@@ -17,19 +17,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import kotlinx.serialization.Serializable
-
-@Serializable
-object Profile
-@Serializable
-object FriendsList
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RootLayout(children: @Composable () -> Unit) {
-    val state = rememberScrollState()
+fun RootLayout() {
+    val scrollingState = rememberScrollState()
     val navController = rememberNavController()
+    val currentRouteName = navController.currentBackStackEntryAsState().value?.destination?.route
 
     Scaffold(
         topBar = {
@@ -39,25 +35,27 @@ fun RootLayout(children: @Composable () -> Unit) {
                     titleContentColor = MaterialTheme.colorScheme.primary,
                 ),
                 title = {
-                    Text("Top app bar")
+                    currentRouteName?.let { Text(text = currentRouteName) }
                 }
             )
         },
         bottomBar = {
-            NavigationBarSample(navigate = {
-                navController.navigate(route = "FriendsList")
-            })
+            NavigationBar {
+                if (it !== null) {
+                    navController.navigate(route = it)
+                }
+            }
         },
     ) { innerPadding ->
         Column(
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxWidth()
-                .verticalScroll(state),
+                .verticalScroll(scrollingState),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            NavHost(navController = navController, startDestination = "Profile") {
-                composable("Profile") { Text("Hello") }
+            NavHost(navController = navController, startDestination = "Home") {
+                composable("Home") { Text("this is home page") }
                 composable("FriendsList") { Text("Not Hello") }
             }
         }
