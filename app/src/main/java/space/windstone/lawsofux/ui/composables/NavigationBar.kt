@@ -1,12 +1,5 @@
 package space.windstone.lawsofux.ui.composables
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.icons.outlined.FavoriteBorder
-import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -16,35 +9,32 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import space.windstone.lawsofux.data.NavigationRoutes
 
 @Composable
 fun NavigationBar(
     navigateTo: (String?) -> Unit,
 ) {
     var selectedItem by remember { mutableIntStateOf(0) }
-    val items = listOf("Home", "FriendsList", "FriendsList")
-    val selectedIcons = listOf(Icons.Filled.Home, Icons.Filled.Favorite, Icons.Filled.Star)
-    val unselectedIcons =
-        listOf(Icons.Outlined.Home, Icons.Outlined.FavoriteBorder, Icons.Outlined.Star)
 
     NavigationBar {
-        items.forEachIndexed { index, item ->
+        NavigationRoutes.forEachIndexed { index, item ->
             NavigationBarItem(
                 icon = {
                     Icon(
                         if (selectedItem == index) {
-                            selectedIcons[index]
+                            item.selectedIcon
                         } else {
-                            unselectedIcons[index]
+                            item.unselectedIcon
                         },
-                        contentDescription = item,
+                        contentDescription = item.name,
                     )
                 },
-                label = { Text(item) },
+                label = { Text(item.name) },
                 selected = selectedItem == index,
                 onClick = {
                     selectedItem = index
-                    navigateTo(items[index])
+                    navigateTo(item.name)
                 },
             )
         }

@@ -26,7 +26,7 @@ fun RootLayout(
 
     Scaffold(
         topBar = {
-            if (currentRouteName != null) {
+            if (currentRouteName !== null) {
                 Header(pinned = scrollBehavior, title = currentRouteName)
             }
         },
