@@ -15,7 +15,15 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import kotlinx.serialization.Serializable
+
+@Serializable
+object Profile
+@Serializable
+object FriendsList
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -36,7 +44,9 @@ fun RootLayout(children: @Composable () -> Unit) {
             )
         },
         bottomBar = {
-            NavigationBarSample()
+            NavigationBarSample(navigate = {
+                navController.navigate(route = "FriendsList")
+            })
         },
     ) { innerPadding ->
         Column(
@@ -46,7 +56,10 @@ fun RootLayout(children: @Composable () -> Unit) {
                 .verticalScroll(state),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            children()
+            NavHost(navController = navController, startDestination = "Profile") {
+                composable("Profile") { Text("Hello") }
+                composable("FriendsList") { Text("Not Hello") }
+            }
         }
     }
 }
