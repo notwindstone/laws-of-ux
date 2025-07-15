@@ -5,5 +5,5 @@ import androidx.compose.runtime.Composable
 
 @Composable
 fun HistoryPage() {
-    Text("this is history page")
+    Text("Your history")
 }

@@ -5,5 +5,5 @@ import androidx.compose.runtime.Composable
 
 @Composable
 fun SettingsPage() {
-    Text("this is settings page")
+    repeat(50) { Text("Settings page") }
 }
