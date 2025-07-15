@@ -15,11 +15,13 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.rememberNavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppLayout(children: @Composable () -> Unit) {
+fun RootLayout(children: @Composable () -> Unit) {
     val state = rememberScrollState()
+    val navController = rememberNavController()
 
     Scaffold(
         topBar = {
