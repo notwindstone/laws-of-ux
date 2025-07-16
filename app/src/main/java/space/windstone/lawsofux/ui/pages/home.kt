@@ -1,6 +1,7 @@
 package space.windstone.lawsofux.ui.pages
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -17,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -31,6 +33,7 @@ fun HomePage() {
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(1),
+        // fixes app crash
         Modifier.heightIn(max = displayHeight.dp),
         contentPadding = PaddingValues(
             horizontal = 8.dp,
@@ -45,6 +48,10 @@ fun HomePage() {
                             color = MaterialTheme.colorScheme.surfaceBright,
                             shape = RoundedCornerShape(16.dp),
                         )
+                        .clip(RoundedCornerShape(16.dp))
+                        .clickable(enabled = true, onClick = {
+
+                        })
                         .fillMaxWidth()
                 ) {
                     Box(
@@ -74,7 +81,7 @@ fun HomePage() {
                         Text(
                             fontSize = 16.sp,
                             color = MaterialTheme.colorScheme.outline,
-                            text = "Users often perceive aesthetically pleasing design as design that’s more usable.",
+                            text = "Users often perceive aesthetically pleasing design as design that's more usable.",
                         )
                     }
                 }

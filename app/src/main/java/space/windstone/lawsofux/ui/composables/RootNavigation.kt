@@ -3,6 +3,7 @@ package space.windstone.lawsofux.ui.composables
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -22,13 +23,28 @@ fun RootNavigation() {
         route = currentRouteName,
         triggerNavigation = {
             if (it !== null) {
-                navController.navigate(route = it)
+                navController.navigate(route = it) {
+                    // Pop up to the start destination of the graph to
+                    // avoid building up a large stack of destinations
+                    // on the back stack as users select items
+                    popUpTo(navController.graph.findStartDestination().id) {
+                        saveState = true
+                    }
+                    // Avoid multiple copies of the same destination when
+                    // re-selecting the same item
+                    launchSingleTop = true
+                    // Restore state when re-selecting a previously selected item
+                    restoreState = true
+                }
             }
         }
     )) {
         // Consistent component shared across all navigation routes
         RootLayout {
-            NavHost(navController = navController, startDestination = homePage) {
+            NavHost(
+                navController = navController,
+                startDestination = homePage,
+            ) {
                 NavigationRoutes.forEach { route ->
                     composable(route.name) {
                         Column {
