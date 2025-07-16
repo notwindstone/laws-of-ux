@@ -19,7 +19,7 @@ fun RootNavigation() {
     val homePage = NavigationRoutes[0].name
 
     CompositionLocalProvider(LocalTriggerNavigation provides NavigationContext(
-        route = "asd",
+        route = currentRouteName,
         triggerNavigation = {
             if (it !== null) {
                 navController.navigate(route = it)

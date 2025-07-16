@@ -5,24 +5,20 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import space.windstone.lawsofux.data.NavigationRoutes
 import space.windstone.lawsofux.utils.contexts.LocalTriggerNavigation
 
 @Composable
 fun NavigationBar() {
-    var selectedItem by remember { mutableIntStateOf(0) }
     val navigateTo = LocalTriggerNavigation.current.triggerNavigation
+    val currentRoute = LocalTriggerNavigation.current.route
 
     NavigationBar {
-        NavigationRoutes.forEachIndexed { index, item ->
+        NavigationRoutes.forEach { item ->
             NavigationBarItem(
                 icon = {
                     Icon(
-                        if (selectedItem == index) {
+                        if (currentRoute === item.name) {
                             item.selectedIcon
                         } else {
                             item.unselectedIcon
@@ -31,9 +27,8 @@ fun NavigationBar() {
                     )
                 },
                 label = { Text(item.name) },
-                selected = selectedItem == index,
+                selected = currentRoute === item.name,
                 onClick = {
-                    selectedItem = index
                     navigateTo(item.name)
                 },
             )
