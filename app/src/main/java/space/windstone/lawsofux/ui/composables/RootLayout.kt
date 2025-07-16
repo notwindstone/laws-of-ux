@@ -13,16 +13,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
+import space.windstone.lawsofux.utils.contexts.LocalTriggerNavigation
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RootLayout(
-    currentRouteName: String?,
-    navigateTo: (String?) -> Unit,
     children: @Composable () -> Unit,
 ) {
     val scrollingState = rememberScrollState()
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
+    val currentRouteName = LocalTriggerNavigation.current.route
 
     Scaffold(
         topBar = {
@@ -31,7 +31,7 @@ fun RootLayout(
             }
         },
         bottomBar = {
-            NavigationBar(navigateTo = navigateTo)
+            NavigationBar()
         },
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
     ) { innerPadding ->

@@ -10,12 +10,12 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import space.windstone.lawsofux.data.NavigationRoutes
+import space.windstone.lawsofux.utils.contexts.LocalTriggerNavigation
 
 @Composable
-fun NavigationBar(
-    navigateTo: (String?) -> Unit,
-) {
+fun NavigationBar() {
     var selectedItem by remember { mutableIntStateOf(0) }
+    val navigateTo = LocalTriggerNavigation.current.triggerNavigation
 
     NavigationBar {
         NavigationRoutes.forEachIndexed { index, item ->

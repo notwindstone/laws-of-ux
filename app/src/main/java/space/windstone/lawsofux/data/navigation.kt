@@ -13,6 +13,11 @@ import space.windstone.lawsofux.ui.pages.HistoryPage
 import space.windstone.lawsofux.ui.pages.HomePage
 import space.windstone.lawsofux.ui.pages.SettingsPage
 
+data class NavigationContext(
+    val route: String?,
+    val triggerNavigation: (String?) -> Unit,
+)
+
 data class Route(
     val name: String,
     val unselectedIcon: ImageVector,
